@@ -13,12 +13,16 @@ class Step extends Component {
       position: {
         startPosition,
         endPosition,
-        knightPosition,
+        currentPosition,
       }
     } = this.props
 
-    if (x_position == knightPosition[0] && y_position == knightPosition[1]){
+    if (x_position == currentPosition[0] && y_position == currentPosition[1]){
       return <span>&#9822;</span>
+    }
+
+    if (x_position == endPosition[0] && y_position == endPosition[1]) {
+      return <span>&#127937;</span>
     }
 
     return null
@@ -37,13 +41,13 @@ class Step extends Component {
     const bgColor = (isEven(x_position) && isEven(y_position)) || (!isEven(x_position) && !isEven(y_position)) ? 'white' : 'black'
 
     return (
-      <div className={bgColor} onClick={clickCallback}>{`${x_position}, ${y_position}`}{this._renderKnight()}</div>
+      <div className={bgColor} onClick={clickCallback}>
+        {this._renderKnight()}
+      </div>
     )
   }
 }
 
-Step.propTypes = {
-  name: PropTypes.string
-}
+Step.propTypes = {}
 
 export default Step
